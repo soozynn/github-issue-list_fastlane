@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+## 실행방법
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+git clone https://github.com/soozynn/github-issue-list_fastlane.git
 
-## Available Scripts
+```
+npm install
+```
 
-In the project directory, you can run:
+설치 후,
 
-### `npm start`
+```
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+http://localhost:3000/ 을 실행시켜주세요.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 최종 결과
 
-### `npm test`
+// 비디오
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 사용한 기술과 선택한 이유
 
-### `npm run build`
+```
+  "@reduxjs/toolkit": "^1.8.3",
+  "prop-types": "^15.8.1",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-router-dom": "^6.3.0",
+  "react-redux": "^8.0.2",
+  "styled-components": "^5.3.5",
+  "uuid": "^8.3.2",
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- @reduxjs/toolkit<br />
+  상태 라이브러리 중 redux-toolkit 을 사용하게 된 이유:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- styled-components를 사용하게 된 이유<br />
+  props를 사용하여 style을 컴포넌트에 맞춰 유동적이게 적용할 수 있는 점을 좋아하기에 선택하게 되었습니다. 자체 스타일을 포함하기에 작은 컴포넌트를 잘 만들어 놓는다면 이외의 여러 프로젝트에서도 쉽게 재사용할 수 있는 이점과 이 외에도 글로벌 스타일을 주어 전체적으로 통일된 스타일 또한 적용할 수 있는 이점이 있어 해당 기술을 선택하게 되었습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Challenge
 
-### `npm run eject`
+- TypeScript
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## About
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 배포 사이트

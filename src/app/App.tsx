@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     width: 100%;
     background-color: #f6f6f6;
+    font-family: "Roboto Condensed", sans-serif;
   }
 
   li {
@@ -28,6 +29,8 @@ const GlobalStyles = createGlobalStyle`
     --color-dark-white: #efefef;
     --color-black: #000000;
     --color-light-gray: #808080;
+    --color-bright-blue: #0096FF;
+    --size-medium: 20px;
   }
 `;
 

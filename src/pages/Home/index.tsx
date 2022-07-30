@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { fetchIssuesAsync, Issue } from "../../features/issues/issuesSlice";
@@ -51,7 +50,7 @@ export default function Home() {
                   Number(b.comments) - Number(a.comments)
               )
               .map((issue) => (
-                <IssueCard key={uuidv4()} data={issue} />
+                <IssueCard key={issue.id} data={issue} />
               ))}
           </ul>
         ) : null}

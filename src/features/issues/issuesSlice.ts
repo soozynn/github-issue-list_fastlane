@@ -6,6 +6,7 @@ export interface Issue {
   created_at: string;
   comments: string;
   photo_url: string;
+  id: string;
 }
 
 interface IssueListState {

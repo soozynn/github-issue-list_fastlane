@@ -25,7 +25,7 @@ const initialState: IssueListState = {
   isLoading: false,
   isSuccess: false,
   isError: false,
-  error: "",
+  error: null,
   issues: [],
 };
 
@@ -72,7 +72,7 @@ export const issuesSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.issues = [];
-        // state.error = payload || "Error: Something went wrong";
+        // state.error = payload || "Error: Something went wrong :(";
       });
   },
 });

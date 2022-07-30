@@ -33,8 +33,10 @@ export default function Home() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchIssuesAsync());
-  }, [dispatch]);
+    if (!issues.issues.length) {
+      dispatch(fetchIssuesAsync());
+    }
+  }, [dispatch, issues.issues.length]);
 
   return (
     <>

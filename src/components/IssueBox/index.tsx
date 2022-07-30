@@ -23,7 +23,6 @@ const IssueContainer = styled.div`
   margin: 10px;
 
   &:hover {
-    border: 1px solid var(--color-black);
     cursor: pointer;
   }
 `;

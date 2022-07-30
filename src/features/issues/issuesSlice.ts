@@ -64,7 +64,6 @@ export const issuesSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        // 걸러주기
         state.issues.push(...payload);
         state.error = null;
       })

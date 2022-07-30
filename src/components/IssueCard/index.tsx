@@ -87,7 +87,6 @@ const Comments = styled.div`
 `;
 
 export default function IssueCard({ data }: IssueProps): React.ReactElement {
-  console.log(data);
   const formatCreatedDate = () => {
     const formatedDate = data.created_at.replace("T", " ").slice(0, -1);
     return formatedDate;

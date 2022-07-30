@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const NavbarContainer = styled.nav`
@@ -21,7 +21,7 @@ const Nav = styled.div`
   align-items: center;
 `;
 
-const NavLink = styled(Link)`
+const NavbarLink = styled(NavLink)`
   margin: 10px;
   padding: 10px;
   color: var(--color-light-gray);
@@ -31,8 +31,9 @@ const NavLink = styled(Link)`
     cursor: pointer;
   }
 
-  &:active {
+  &.active {
     color: var(--color-black);
+    border-bottom: 1px solid var(--color-black);
   }
 `;
 
@@ -47,10 +48,10 @@ export default function Navbar() {
   return (
     <NavbarContainer>
       <Nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
+        <NavbarLink to="/">Home</NavbarLink>
+        <NavbarLink to="/about">About</NavbarLink>
       </Nav>
-      <Logo>Issue List</Logo>
+      <Logo>Issue List_sujin</Logo>
     </NavbarContainer>
   );
 }

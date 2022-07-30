@@ -39,7 +39,7 @@ http://localhost:3000/ 을 실행시켜주세요.
 
 ## Challenge
 
-- TypeScript<br />
+- TypeScript
 
 ## About
 

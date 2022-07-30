@@ -1,29 +1,51 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export interface Issue {
+interface Issue {
   number: string;
   title: string;
   created_at: string;
   comments: string;
-  image: string;
+  photo_url: string;
 }
 
-export interface IssueListState {
-  loading: boolean;
+interface IssueListState {
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  error: string | null;
   issues: Issue[];
-  error: string;
+}
+
+interface ServerError {
+  statusCode: number;
+  description: string;
 }
 
 const initialState: IssueListState = {
-  loading: false,
-  issues: [],
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
   error: "",
+  issues: [],
 };
 
-export const getIssuesAsync = createAsyncThunk("issues/getIssues", async () => {
-  return fetch("https://api.github.com/repos/facebook/create-react-app/issues")
-    .then((response) => response.json())
-    .then((response) => console.log(response));
+export const fetchIssuesAsync = createAsyncThunk<
+  Issue[],
+  void,
+  {
+    rejectValue: ServerError;
+  }
+>("issues/fetch", async (_, { rejectWithValue }) => {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/facebook/create-react-app/issues`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return rejectWithValue(error as ServerError);
+  }
 });
 
 export const issuesSlice = createSlice({
@@ -31,26 +53,28 @@ export const issuesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getIssuesAsync.pending, (state) => {
-      // both `state` and `action` are now correctly typed
-      // based on the slice state and the `pending` action creator
-    });
-    // builder.addCase(
-    //   getIssuesAsync.fulfilled,
-    //   (state, action: PayloadAction<Issue[]>) => {
-    //     state.status = true;
-    //     state.issues = action.payload;
-    //     state.error = "";
-    //   }
-    // );
-    // builder.addCase(
-    //   getIssuesAsync.rejected,
-    //   (state, action: PayloadAction<Issue[]>) => {
-    //     state.status = false;
-    //     state.issues = [];
-    //     state.error = action.error.message || "Something went wrong";
-    //   }
-    // );
+    builder
+      .addCase(fetchIssuesAsync.pending, (state) => {
+        state.isLoading = true;
+        state.isSuccess = false;
+        state.isError = false;
+        state.error = null;
+      })
+      .addCase(fetchIssuesAsync.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        // 걸러주기
+        state.issues.push(...payload);
+        state.error = null;
+      })
+      .addCase(fetchIssuesAsync.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.issues = [];
+        // state.error = payload || "Error: Something went wrong";
+      });
   },
 });
 

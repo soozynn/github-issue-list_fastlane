@@ -56,7 +56,7 @@ export default function Home() {
         ) : null}
       </IssueListWrapper>
       {issues.isLoading && <LoadingMessage>Loading...</LoadingMessage>}
-      {issues.isError && <ErrorMessage>{issues.error}</ErrorMessage>}
+      {issues.isError && <ErrorMessage>{issues.errorMessage}</ErrorMessage>}
     </>
   );
 }

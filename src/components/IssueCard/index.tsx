@@ -104,3 +104,15 @@ export default function IssueCard({ data }: IssueProps): React.ReactElement {
     </IssueContainer>
   );
 }
+
+IssueCard.propTypes = {
+  data: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      avatar_url: PropTypes.string,
+    }),
+    number: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    comments: PropTypes.number.isRequired,
+  }).isRequired,
+};

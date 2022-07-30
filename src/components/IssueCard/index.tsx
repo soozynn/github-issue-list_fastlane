@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 interface IssueProps {
   data: {
@@ -72,6 +73,7 @@ const Title = styled.div`
   display: flex;
   justify-content: flex-start;
   color: var(--color-bright-blue);
+  text-align: left;
 `;
 
 const CreatedDate = styled.div`
@@ -85,6 +87,7 @@ const Comments = styled.div`
 `;
 
 export default function IssueCard({ data }: IssueProps): React.ReactElement {
+  console.log(data);
   const formatCreatedDate = () => {
     const formatedDate = data.created_at.replace("T", " ").slice(0, -1);
     return formatedDate;
@@ -94,7 +97,7 @@ export default function IssueCard({ data }: IssueProps): React.ReactElement {
     <IssueContainer>
       <Image src={data.user?.avatar_url} alt="avatar" />
       <Content>
-        <Number>Number: {data.number}</Number>
+        <Number>Issue Number: {data.number}</Number>
         <Title>Title: {data.title}</Title>
         <CreatedDate>Created Date: {formatCreatedDate()}</CreatedDate>
         <Comments>Comments: {data.comments}</Comments>

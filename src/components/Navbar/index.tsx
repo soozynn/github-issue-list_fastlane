@@ -36,6 +36,13 @@ const NavLink = styled(Link)`
   }
 `;
 
+const Logo = styled.div`
+  position: absolute;
+  top: 30%;
+  right: 20px;
+  font-size: var(--size-large);
+`;
+
 export default function Navbar() {
   return (
     <NavbarContainer>
@@ -43,6 +50,7 @@ export default function Navbar() {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
       </Nav>
+      <Logo>Issue List</Logo>
     </NavbarContainer>
   );
 }

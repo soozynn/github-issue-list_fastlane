@@ -31,6 +31,7 @@ const GlobalStyles = createGlobalStyle`
     --color-light-gray: #808080;
     --color-bright-blue: #0096FF;
     --size-medium: 20px;
+    --size-large: 25px;
   }
 `;
 

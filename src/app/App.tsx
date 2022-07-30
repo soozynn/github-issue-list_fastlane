@@ -1,9 +1,33 @@
 import React, { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
-import { fetchIssuesAsync } from "../features/issues/issuesSlice";
-import Issue from "../components/Issue";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { fetchIssuesAsync, Issue } from "../features/issues/issuesSlice";
+import IssueBox from "../components/IssueBox";
+
+const GlobalStyles = createGlobalStyle`
+  body, html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "Acme", sans-serif;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  :root {
+    --color-red: #FF0000;
+    --color-black: #000000;
+  }
+`;
+
+const ErrorMessage = styled.div`
+  color: var(--color-red);
+`;
 
 export default function App() {
   const issues = useAppSelector((state) => state.issues);
@@ -15,15 +39,20 @@ export default function App() {
 
   return (
     <>
+      <GlobalStyles />
       {issues.isLoading && <div>Loading...</div>}
-      {issues.isError && <div>{issues.error}</div>}
+      {issues.isError && <ErrorMessage>{issues.error}</ErrorMessage>}
       {!issues.isLoading && issues.issues.length ? (
-        // 커멘츠 많은 수대로 정렬
-        // 작성일은 YYYY-MM-DD hh:mm:ss 형식
         <ul>
-          {issues.issues.map((issue) => (
-            <Issue key={uuidv4()} />
-          ))}
+          {issues.issues
+            .slice()
+            .sort(
+              (a: Issue, b: Issue): number =>
+                Number(b.comments) - Number(a.comments)
+            )
+            .map((issue) => (
+              <IssueBox key={uuidv4()} data={issue} />
+            ))}
         </ul>
       ) : null}
     </>

@@ -27,6 +27,9 @@ const IssueContainer = styled.li`
   background-color: var(--color-white);
   text-align: center;
 
+  &:hover {
+  }
+
   @media (min-width: 1142px) {
     max-width: 900px;
   }

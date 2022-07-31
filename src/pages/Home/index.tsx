@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { useInView } from "react-intersection-observer";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { fetchIssuesAsync, Issue } from "../../features/issues/issuesSlice";
@@ -28,6 +29,9 @@ const ErrorMessage = styled.div`
 `;
 
 export default function Home() {
+  // const { ref: myRef, inView: isVisibleIssueCard } = useInView();
+  // const myRef = useRef<HTML();
+  // const [isVisibleIssueCard, setIsVisivleIssueCard] = useState(false);
   const issues = useAppSelector((state) => state.issues);
   const dispatch = useAppDispatch();
 
@@ -36,6 +40,15 @@ export default function Home() {
       dispatch(fetchIssuesAsync());
     }
   }, [dispatch, issues.issues.length]);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     const entry = entries[0];
+  //     setIsVisivleIssueCard(entry.isIntersecting);
+  //   });
+
+  //   observer.observe(myRef.current);
+  // }, []);
 
   return (
     <>

@@ -8,6 +8,7 @@ import Home from "../pages/Home/index";
 describe("Home component test", () => {
   it("renders Home text", () => {
     render(<Home />);
+    // mock data 설정 필요
 
     const pageName = screen.getByText(/Home/i);
     expect(pageName).toBeInTheDocument();

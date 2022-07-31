@@ -1,6 +1,8 @@
 ## 실행방법
 
+```
 git clone https://github.com/soozynn/github-issue-list_fastlane.git
+```
 
 ```
 npm install
@@ -28,7 +30,7 @@ http://localhost:3000/ 을 실행시켜주세요.
   "react-router-dom": "^6.3.0",
   "react-redux": "^8.0.2",
   "styled-components": "^5.3.5",
-  "enzyme": "^3.11.0",
+  "typescript": "^4.7.4",
 ```
 
 - @reduxjs/toolkit<br />
@@ -44,5 +46,9 @@ http://localhost:3000/ 을 실행시켜주세요.
 
 - Observer 적용하기<br />
   요구사항 이외에 또 다른 시도로 무얼 해볼 수 있을까 생각을 해보다 데이터가 더 많다는 가정으로 Intersection Observer API를 사용하여 인피니트 스크롤을 구현해보는 것 또한 재밌겠다라는 생각이 들어 만들어보게 되었습니다. 한 번에 이슈 카드가 보여지는 것도 나쁘지 않겠지만 스크롤이 특정 포지션을 지나갔을 때 아이템을 추가로 로드하는 인피니트 스크롤을 구현하는 것이 사용자 측면에서 더 자연스러운 흐름일 거 같다는 생각이 들었습니다.
+
+## About
+
+현재 추가해보고 싶은 기능 중 IntersectionObserver가 미완성이어서 계속해서 접근해보고 있습니다. 참고해주시면 감사합니다!
 
 ## 배포 사이트

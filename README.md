@@ -28,6 +28,7 @@ http://localhost:3000/ 을 실행시켜주세요.
   "react-router-dom": "^6.3.0",
   "react-redux": "^8.0.2",
   "styled-components": "^5.3.5",
+  "enzyme": "^3.11.0",
 ```
 
 - @reduxjs/toolkit<br />

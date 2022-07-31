@@ -110,7 +110,7 @@ IssueCard.propTypes = {
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
       avatar_url: PropTypes.string,
-    }),
+    }).isRequired,
     number: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     comments: PropTypes.number.isRequired,

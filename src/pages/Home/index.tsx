@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useInView } from "react-intersection-observer";
 
+// import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { fetchIssuesAsync, Issue } from "../../features/issues/issuesSlice";
 import IssueCard from "../../components/IssueCard";
@@ -21,14 +21,19 @@ const LoadingMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: var(--size-medium);
 `;
 
 const ErrorMessage = styled.div`
   color: var(--color-red);
 `;
 
+// const Loader = styled.div`
+//   font-size: var(--size-medium);
+// `;
+
 export default function Home() {
+  // const [isLoaded, setIsLoaded] = useState(false);
   const issues = useAppSelector((state) => state.issues);
   const dispatch = useAppDispatch();
 
@@ -37,6 +42,28 @@ export default function Home() {
       dispatch(fetchIssuesAsync());
     }
   }, [dispatch, issues.issues.length]);
+
+  // const getMoreCard = async () => {
+  //   setIsLoaded(true);
+  // };
+
+  // const onIntersect: IntersectionObserverCallback = async (
+  //   [entry],
+  //   observer
+  // ) => {
+  //   if (entry.isIntersecting && !isLoaded) {
+  //     observer.unobserve(entry.target);
+  //     await getMoreCard();
+  //     observer.observe(entry.target);
+  //   }
+  // };
+
+  // const { setTarget } = useIntersectionObserver({
+  //   root: null,
+  //   rootMargin: "0px",
+  //   threshold: 0.5,
+  //   onIntersect,
+  // });
 
   return (
     <>
@@ -58,6 +85,7 @@ export default function Home() {
       </IssueListWrapper>
       {issues.isLoading && <LoadingMessage>Loading...</LoadingMessage>}
       {issues.isError && <ErrorMessage>{issues.errorMessage}</ErrorMessage>}
+      {/* <div ref={setTarget}>{isLoaded && <Loader>Loading...</Loader>}</div> */}
     </>
   );
 }

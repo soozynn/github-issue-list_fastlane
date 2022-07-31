@@ -18,7 +18,7 @@ http://localhost:3000/ 을 실행시켜주세요.
 
 ## 최종 결과
 
-// 비디오
+<img src="./asset/result.gif" alt="result" />
 
 ## 사용한 기술과 선택한 이유
 

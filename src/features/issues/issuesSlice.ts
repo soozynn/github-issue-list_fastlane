@@ -6,36 +6,26 @@ export interface Issue {
   created_at: string;
   comments: string;
   photo_url: string;
+  id: string;
 }
 
 interface IssueListState {
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
-  error: string | null;
+  errorMessage: string | null;
   issues: Issue[];
-}
-
-interface ServerError {
-  statusCode: number;
-  description: string;
 }
 
 const initialState: IssueListState = {
   isLoading: false,
   isSuccess: false,
   isError: false,
-  error: "",
+  errorMessage: null,
   issues: [],
 };
 
-export const fetchIssuesAsync = createAsyncThunk<
-  Issue[],
-  void,
-  {
-    rejectValue: ServerError;
-  }
->("issues/fetch", async (_, { rejectWithValue }) => {
+export const fetchIssuesAsync = createAsyncThunk("issues/fetch", async () => {
   try {
     const response = await fetch(
       `https://api.github.com/repos/facebook/create-react-app/issues`
@@ -44,7 +34,6 @@ export const fetchIssuesAsync = createAsyncThunk<
     return data;
   } catch (error) {
     console.error(error);
-    return rejectWithValue(error as ServerError);
   }
 });
 
@@ -58,22 +47,21 @@ export const issuesSlice = createSlice({
         state.isLoading = true;
         state.isSuccess = false;
         state.isError = false;
-        state.error = null;
+        state.errorMessage = null;
       })
       .addCase(fetchIssuesAsync.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        // 걸러주기
         state.issues.push(...payload);
-        state.error = null;
+        state.errorMessage = null;
       })
-      .addCase(fetchIssuesAsync.rejected, (state, { payload }) => {
+      .addCase(fetchIssuesAsync.rejected, (state) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
         state.issues = [];
-        // state.error = payload || "Error: Something went wrong";
+        state.errorMessage = "Error: Something went wrong :(";
       });
   },
 });

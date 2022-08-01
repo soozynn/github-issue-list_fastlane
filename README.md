@@ -52,3 +52,5 @@ http://localhost:3000/ 을 실행시켜주세요.
 현재 추가해보고 싶은 기능 중 IntersectionObserver가 미완성이어서 계속해서 접근해보고 있습니다. 참고해주시면 감사합니다!
 
 ## 배포 사이트
+
+https://stellar-tulumba-56de81.netlify.app

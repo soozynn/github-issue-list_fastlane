@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 interface useIntersectionObserverProps {
   root?: null;
@@ -32,3 +33,10 @@ export default function useIntersectionObserver({
 
   return { setTarget };
 }
+
+useIntersectionObserver.propTypes = {
+  root: PropTypes.oneOf([null]),
+  rootMargin: PropTypes.string,
+  threshold: PropTypes.number,
+  onIntersect: PropTypes.func.isRequired,
+};

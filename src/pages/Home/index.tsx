@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-// import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { fetchIssuesAsync, Issue } from "../../features/issues/issuesSlice";
 import IssueCard from "../../components/IssueCard";
@@ -28,12 +28,12 @@ const ErrorMessage = styled.div`
   color: var(--color-red);
 `;
 
-// const Loader = styled.div`
-//   font-size: var(--size-medium);
-// `;
+const Loader = styled.div`
+  font-size: var(--size-medium);
+`;
 
 export default function Home() {
-  // const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const issues = useAppSelector((state) => state.issues);
   const dispatch = useAppDispatch();
 
@@ -43,33 +43,34 @@ export default function Home() {
     }
   }, [dispatch, issues.issues.length]);
 
-  // const getMoreCard = async () => {
-  //   setIsLoaded(true);
-  // };
+  const getMoreCard = async () => {
+    setIsLoaded(true);
+    setIsLoaded(false);
+  };
 
-  // const onIntersect: IntersectionObserverCallback = async (
-  //   [entry],
-  //   observer
-  // ) => {
-  //   if (entry.isIntersecting && !isLoaded) {
-  //     observer.unobserve(entry.target);
-  //     await getMoreCard();
-  //     observer.observe(entry.target);
-  //   }
-  // };
+  const onIntersect: IntersectionObserverCallback = async (
+    [entry],
+    observer
+  ) => {
+    if (entry.isIntersecting && !isLoaded) {
+      observer.unobserve(entry.target);
+      await getMoreCard();
+      observer.observe(entry.target);
+    }
+  };
 
-  // const { setTarget } = useIntersectionObserver({
-  //   root: null,
-  //   rootMargin: "0px",
-  //   threshold: 0.5,
-  //   onIntersect,
-  // });
+  const { setTarget } = useIntersectionObserver({
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+    onIntersect,
+  });
 
   return (
     <>
       <PageName>Home</PageName>
       <IssueListWrapper>
-        {!issues.isLoading && issues.issues.length ? (
+        {issues.isSuccess && (
           <ul>
             {issues.issues
               .slice()
@@ -81,11 +82,11 @@ export default function Home() {
                 <IssueCard key={issue.id} data={issue} />
               ))}
           </ul>
-        ) : null}
+        )}
       </IssueListWrapper>
       {issues.isLoading && <LoadingMessage>Loading...</LoadingMessage>}
       {issues.isError && <ErrorMessage>{issues.errorMessage}</ErrorMessage>}
-      {/* <div ref={setTarget}>{isLoaded && <Loader>Loading...</Loader>}</div> */}
+      <div ref={setTarget}>{isLoaded && <Loader>Loading...</Loader>}</div>
     </>
   );
 }
